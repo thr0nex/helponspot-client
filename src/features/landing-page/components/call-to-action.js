@@ -21,13 +21,11 @@ export default function CallToAction() {
             <Link to="/app/organisation/createOrganisation">registrieren</Link>
           </ButtonOrange>
 
-
           <img
-              className="w-full md:w-2/5 z-50 md:mt-16"
-              src={require("../../../assets/hacklogoporjekt.webp")}
-              alt={"Logo von #WirVsVirus"}
+            className="w-full md:w-2/5 z-50 md:mt-16"
+            src={require("../../../assets/hacklogoporjekt.webp")}
+            alt={"Logo von #WirVsVirus"}
           />
-
         </div>
 
         <div className="w-full h-full md:w-1/2 py-6 text-center md:mt-auto">

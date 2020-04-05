@@ -8,28 +8,6 @@ import {OrgNameContext, OrgIdContext} from "../../../context/organisation_contex
 import {Helper} from "../../../repository/model/helper";
 import {Skill} from "../../../repository/model/helprequest";
 
-const repository = new RepositoryImpl();
-
-// eslint-disable-next-line no-unused-vars
-
-const mockData = [
-    {
-        title: "Helft Tragen und Transportieren",
-        timeLast: "5 Tage",
-        reqHelpers: 30,
-        confirmed: 14,
-        denied: 14,
-        open: 12
-    },
-    {
-        title: "Blutspender gesucht",
-        timeLast: "2 Tage",
-        reqHelpers: -1,
-        confirmed: 140,
-        denied: 0,
-        open: 0
-    }
-];
 
 export default function Dashboard() {
     const org_id = useContext(OrgIdContext);
@@ -45,11 +23,14 @@ export default function Dashboard() {
     return (
         <ReqProvider>
             <FullHeightLayoutNoFooter>
-                <div>
+              <div className="flex flex-col w-full h-full px-8 py-4 overflow-y-auto w-full scrolling-touch">   
+              <div style={{flex: 2}}>
                     <h1 className="question font-dm-sans-h1">
                         Hi  {org_name}, das gibt's Neues.
                     </h1>
+                    </div>
                 </div>
+
 
                 <div>
                     <Reactions reactNum={12} />
@@ -61,11 +42,7 @@ export default function Dashboard() {
         </ReqProvider>
     );
 
+     
+        
+          <h1 className="question font-dm-sans-h1">
 }
-/*{
-    <div>
-                  {mockData.map(el => {
-                    return <OpenRequest {...el} />;
-                  })}
-                </div>
-}*/

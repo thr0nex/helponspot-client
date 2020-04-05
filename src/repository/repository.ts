@@ -211,7 +211,7 @@ class FetchService implements Service {
 
     getHelpRequests(organisation_id:number): Promise<HelpRequest[]> {
         console.log("executing")
-        const MOCKED_HELPREQUESTS = [
+        const MOCKED_HELPREQUESTS: HelpRequest[] = [
             {
                 id: 1,
                 name: "Help wanted",
@@ -220,7 +220,7 @@ class FetchService implements Service {
                 organisation_id:17,
                 date_start: "23.03.2020 14:00 Uhr",
                 number_requested_helpers:5,
-                roles: [],
+                //roles: [],
                 skills: [],
                 requested_helpers: this.mockHelpers(),
                 confirmed_helpers: this.mockHelpers(),
@@ -234,7 +234,7 @@ class FetchService implements Service {
                 date_start: "23.03.2020 14:00 Uhr",
                 organisation_id:17,
                 number_requested_helpers:5,
-                roles: [],
+                // roles: [],
                 skills: [],
                 requested_helpers: this.mockHelpers(),
                 confirmed_helpers: this.mockHelpers(),

@@ -31,7 +31,7 @@ export default function Competences() {
   /** state holds the new competence input */
   const [value, setValue] = useState("");
 
-  const addCompetence = competence => {
+  const addCompetence = (competence: string) => {
     let new_options = [...options, competence];
     setOptions(new_options);
   };
@@ -44,7 +44,7 @@ export default function Competences() {
     setIsOpen(false);
   }
 
-  function handleSubmit(event) {
+  function handleSubmit(event: React.MouseEvent<HTMLFormElement>) {
     if (value !== "") {
       addCompetence(value);
     }
@@ -54,8 +54,8 @@ export default function Competences() {
   }
 
   /** on input of new competence */
-  function handleChange(event) {
-    setValue(event.target.value);
+  function handleChange(event: React.FormEvent<HTMLInputElement>): void {
+    setValue(event.currentTarget.value);
   }
 
   return (
