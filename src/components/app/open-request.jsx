@@ -5,32 +5,32 @@ export default function OpenRequest(props) {
     <div className="flex flex-col my-4 p-4 max-w-sm bg-white rounded-lg">
       <div>
         <h5 className="font-dm-sans font-bold text-figmaDescription">
-          {props.title}
+          {props.name}
         </h5>
       </div>
 
       <div>
         <p className="font-inter text-figmaParagraph">
-          noch {props.timeLast} | {props.reqHelpers < 0? "alle" : props.reqHelpers} Teilnehmer
+          Beginn: {props.date_start}
         </p>
       </div>
 
       <div className="mt-2 flex flex-col">
         <div className="my-1 flex">
           <div className="bg-figmaAccept inline-block rounded-lg px-2 py-1">
-            {props.confirmed} angenommen
+            {props.confirmed_helpers.length} angenommen
           </div>
         </div>
 
         <div className="my-1 flex">
           <div className="bg-figmaDeny inline-block rounded-lg px-2 py-1">
-            {props.denied} abgelehnt
+            {props.denied_helpers.length} abgelehnt
           </div>
         </div>
 
         <div className="my-1 flex">
           <div className="bg-figmaOpen inline-block rounded-lg px-2 py-1">
-            {props.open} offen
+            {props.requested_helpers.length - props.confirmed_helpers.length} offen
           </div>
         </div>
       </div>

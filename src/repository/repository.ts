@@ -42,7 +42,7 @@ export interface Repository {
      */
     notifyHelpers(matching: HelperSearchDefinition): Promise<any>;
 
-    getHelpRequests(): Promise<HelpRequest[]>
+    getHelpRequests(organisation_id:number): Promise<HelpRequest[]>
 }
 
 /**
@@ -73,8 +73,8 @@ export class RepositoryImpl implements Repository {
         return this.service.notifyHelpers(matching);
     }
 
-    getHelpRequests(): Promise<HelpRequest[]> {
-        return this.service.getHelpRequests();
+    getHelpRequests(organisation_id:number): Promise<HelpRequest[]> {
+        return this.service.getHelpRequests(organisation_id);
     }
 
 }
@@ -113,7 +113,7 @@ export interface Service {
      */
     notifyHelpers(matching: HelperSearchDefinition): Promise<any>;
 
-    getHelpRequests(): Promise<HelpRequest[]>
+    getHelpRequests(organisation_id:number): Promise<HelpRequest[]>
 
     getOrganziationInfo(orgId: string): Promise<OrganizationInfo>;
 }
@@ -209,31 +209,36 @@ class FetchService implements Service {
         return arr;
     }
 
-    getHelpRequests(): Promise<HelpRequest[]> {
+    getHelpRequests(organisation_id:number): Promise<HelpRequest[]> {
+        console.log("executing")
         const MOCKED_HELPREQUESTS = [
             {
                 id: 1,
-                name: "Am Tannenbusch 13",
+                name: "Help wanted",
+                address: "Am Tannenbusch 13",
                 created_at: "22.03.2020 17:12 Uhr",
                 organisation_id:17,
                 date_start: "23.03.2020 14:00 Uhr",
-                number_helpers:5,
-                roles: [],
-                skills: [],
-                requested_helpers: this.mockHelpers(),
-                confirmed_helpers: this.mockHelpers()
-            },
-            {
-                id: 2,
-                name: "Rapsacker 27",
-                created_at: "22.03.2020 17:12 Uhr",
-                date_start: "23.03.2020 14:00 Uhr",
-                organisation_id:17,
-                number_helpers:5,
+                number_requested_helpers:5,
                 roles: [],
                 skills: [],
                 requested_helpers: this.mockHelpers(),
                 confirmed_helpers: this.mockHelpers(),
+                denied_helpers: this.mockHelpers()
+            },
+            {
+                id: 2,
+                name: "A lot of help wanted",
+                address: "Rapsacker 27",
+                created_at: "22.03.2020 17:12 Uhr",
+                date_start: "23.03.2020 14:00 Uhr",
+                organisation_id:17,
+                number_requested_helpers:5,
+                roles: [],
+                skills: [],
+                requested_helpers: this.mockHelpers(),
+                confirmed_helpers: this.mockHelpers(),
+                denied_helpers: this.mockHelpers(),
             },
 
         ]; 

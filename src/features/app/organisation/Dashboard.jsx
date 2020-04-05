@@ -1,10 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import FullHeightLayoutNoFooter from  "../../../components/app/full-height-layout-no-footer"
 import Reactions from "../../../components/app/reactions";
 import OpenRequest from "../../../components/app/open-request";
 import ReqProvider, { ReqContext } from "../../../context/mock-requests";
+import RepositoryImpl from "../../../repository/repository";
+import {OrgNameContext, OrgIdContext} from "../../../context/organisation_context"
+import {Helper} from "../../../repository/model/helper";
+import {Skill} from "../../../repository/model/helprequest";
+
+const repository = new RepositoryImpl();
 
 // eslint-disable-next-line no-unused-vars
+
 const mockData = [
     {
         title: "Helft Tragen und Transportieren",
@@ -25,13 +32,22 @@ const mockData = [
 ];
 
 export default function Dashboard() {
-    const data = useContext(ReqContext);
+    const org_id = useContext(OrgIdContext);
+    const org_name = useContext(OrgNameContext);
+    const [data, setData] = useState([]);
+    React.useEffect(() => {
+        const fetchOrgData = async () => {
+            const data =  await repository.getHelpRequests(org_id);
+            setData(data);
+        };
+        fetchOrgData();
+    }, []);
     return (
         <ReqProvider>
             <FullHeightLayoutNoFooter>
                 <div>
                     <h1 className="question font-dm-sans-h1">
-                        Hi DRK Berlin, das gibt's Neues.
+                        Hi  {org_name}, das gibt's Neues.
                     </h1>
                 </div>
 
@@ -44,6 +60,7 @@ export default function Dashboard() {
             </FullHeightLayoutNoFooter>
         </ReqProvider>
     );
+
 }
 /*{
     <div>
